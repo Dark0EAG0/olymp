@@ -8,11 +8,11 @@ import (
 func TestAddTwoNumbers(t *testing.T) {
 	tests := []struct {
 		name string
-		l1 *ListNode
-		l2 *ListNode
+		l1   *ListNode
+		l2   *ListNode
 		want *ListNode
 	}{
-		{"1", &ListNode{2, &ListNode{4, &ListNode{3,nil}}}, &ListNode{5, &ListNode{6, &ListNode{4,nil}}}, &ListNode{7, &ListNode{0, &ListNode{8,nil}}} },
+		{"1", &ListNode{2, &ListNode{4, &ListNode{3, nil}}}, &ListNode{5, &ListNode{6, &ListNode{4, nil}}}, &ListNode{7, &ListNode{0, &ListNode{8, nil}}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -37,9 +37,8 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	next2 := l2.Next
 	ans := &ListNode{}
 	first := ans
-	fi:=true
 	for cur1 != nil || cur2 != nil {
-		v:=0
+		v := 0
 		if cur2 != nil {
 			v += cur2.Val
 		}
@@ -50,26 +49,21 @@ func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		if v >= 10 {
 			f = 1
 		}
-		if fi{
-			fi = false
-			ans.Val += v % 10
-		}else{
-			ans.Next = &ListNode{f, nil}
-			ans.Val += v % 10
-		}
-		nilis:=false
+		ans.Val += v % 10
+		nilis := false
 		if cur1.Next != nil {
 			cur1 = next1
 			next1 = cur1.Next
-		}else {
+		} else {
 			nilis = true
 		}
-		if cur2.Next != nil{
+		if cur2.Next != nil {
 			cur2 = next2
 			next2 = cur2.Next
-		}else if nilis{
+		} else if nilis && f == 0 {
 			break
 		}
+		ans.Next = &ListNode{f, nil}
 		ans = ans.Next
 	}
 	return first
