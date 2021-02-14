@@ -24,5 +24,33 @@ func main() {
 }
 
 func fn(a int64, b int64) (C int64) {
+	if b == 1 {
+		C++
+		b++
+	}
+	if a < b{
+		return 1+C
+	}
+	bcount:=int64(1)
+	c:=howlong(a, b)
+	for bcount < 10{
+		c=min(howlong(a, b+bcount) + bcount, c)
+		bcount ++
+	}
+	return C+c
+}
 
+func howlong(a int64, b int64) (r int64){
+	for a > 0{
+		a/=b
+		r++
+	}
+	return r
+}
+
+func min(a int64, b int64) int64{
+	if a < b{
+		return a
+	}
+	return b
 }
